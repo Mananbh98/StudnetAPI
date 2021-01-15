@@ -1,5 +1,6 @@
 package com.example.demo.student;
 import com.example.demo.student.StudentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,7 +16,15 @@ public class StudentController {
     // Reference to StudentService
     private final StudentService studentService;
 
-    // Adding the constructor
+    // Passing it inside the controller
+    // This won't work because we dont have an instance of student service
+    //So we can add new to initialize the service this.studentService = new studentService;
+    // But this is not a good practice
+    //So use dependency injection
+    //To use it add @Autowired annotation to the constructor and @constructor to the StudentService class
+    //@controller will convert the class into a spring bean and this class will be instantiated
+    //@Controller and @Service are the same,but it is more relevant.So insted of Controller we will write service
+    @Autowired
     public StudentController(StudentService studentService){
         this.studentService = studentService;
     }
