@@ -35,6 +35,17 @@ public class StudentService {
         studentRepository.save(student);
 
     }
+
+    public void deleteStudent(Long studentId) {
+    studentRepository.findById(studentId);
+    boolean exists = studentRepository.existsById(studentId);
+    if(!exists){
+        throw new IllegalStateException(
+                "student with id"+ studentId + "deos not exits");
+    }
+    studentRepository.deleteById(studentId);
+    // check delete in postman on url http://localhost:8080/api/v1/student/1
+    }
 }
 
 /* Static data
