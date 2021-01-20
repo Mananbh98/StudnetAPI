@@ -3,6 +3,7 @@ import com.example.demo.student.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
@@ -42,12 +43,24 @@ public class StudentController {
         studentService.deleteStudent(studentId);
     }
 
+    @PutMapping(path = "{studentId}")
+    public  void updateStudent(
+            @PathVariable("studentId") Long studentId,
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String email){
+        studentService.updateStudent(studentId, name, email);
+    }
+
+
+
     /*
     *
-    * json request for postman {
+    * json post request for postman {
     "name":"darknorth",
     "email":"darknorth@gamil.com",
     "dob":"2001-05-04"
+    * put request
+    * http://localhost:8080/api/v1/student/1?name=darknorth&email=darknorth@gmail.com
 }*/
 
 }
