@@ -38,5 +38,12 @@ public class StudentController {
         studentService.addNewStudent(student);
     }
 
+    /*
+    *
+    * json request for postman {
+    "name":"darknorth",
+    "email":"darknorth@gamil.com",
+    "dob":"2001-05-04"
+}*/
 
 }
